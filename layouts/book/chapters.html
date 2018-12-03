@@ -1,0 +1,41 @@
+{{ define "header" }}{{ partial "page-header.html" . }}{{ end }}
+{{ define "main" }}
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv4 ph3 ph2-ns mw8">
+    <div class="content-center">
+	   <form role="search" method="get" action="https://www.google.com/search">
+			  <input type="search" placeholder="Искать на сайте" value="" name="q" title="Search for:">
+			  <input type="hidden" name="sitesearch" value="hpmor.ru">
+			  <button type="submit" value="Искать">Искать</button>
+		</form>      
+    </div>
+      <header>
+        <h1 class="f2">
+          {{ .Title }}
+        </h1>
+      </header>
+      
+      <div class="ph3 pt2 pb4 mt2 bg-moon-gray pa2">
+         {{ if .NextInSection }} <a class="tl fl cf list hover-bg-white link black underline-hover" href="{{.NextInSection.Permalink}}"><< Предыдущая глава</a> {{ end }}
+         {{ if .PrevInSection }} <a class="tr fr cf list hover-bg-white link black underline-hover" href="{{.PrevInSection.Permalink}}">Следующая глава >></a> {{ end }}
+      </div>
+        
+      <div class="nested-copy-line-height lh-copy nested-links nested-img">
+        {{ .Content }}
+      </div>
+      
+      <div class="ph3 pt2 pb4 mt2 bg-moon-gray pa2">
+         {{ if .NextInSection }} <a class="tl fl cf list hover-bg-white link black underline-hover" href="{{.NextInSection.Permalink}}"><< Предыдущая глава</a> {{ end }}
+         {{ if .PrevInSection }} <a class="tr fr cf list hover-bg-white link black underline-hover" href="{{.PrevInSection.Permalink}}">Следующая глава >></a> {{ end }}
+      </div>
+      
+      <div class="mt2 pa2 tc">
+      <a class="underline-hover no-underline link black" title="Книга публикуется по лицензии Creative Commons Attribution-ShareAlike 4.0 International" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>
+      </div>
+        
+    </article>
+    <aside class="ph1 mt2 mw5-ns">
+      {{ partial "menu-contextual_book.html" . }}
+    </aside>
+  </div>
+{{ end }}
