@@ -3,13 +3,15 @@
 # Copyright 2017 Yuliy Lobarev
 
 __author__ = 'Yuliy Lobarev'
-__description__ = 'Converting Markdown formatted chapters from Drupal 7 to Hugo Markdown files.'
+__description__ = 'Converting Markdown formatted chapters for Drupal 7 to Hugo Markdown files.'
 
 """Converting exported from DOCX,
 Markdown files
 to Hugo site generator Markdown files.
 
 The script works on a folder with Markdown files.
+
+Compartible with Python 3.6.6
 """
 
 import os
