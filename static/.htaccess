@@ -12,8 +12,8 @@ ErrorDocument 404 /404.html
 </IfModule>
 
 # Redirects to OPDS catalog
-Redirect /opds http://hpmor.ru/files/opds.xml
-Redirect /files/opds2.xml http://hpmor.ru/files/opds.xml
+Redirect /opds https://hpmor.ru/files/opds.xml
+Redirect /files/opds2.xml https://hpmor.ru/files/opds.xml
 
 # Don't show directory listings for URLs which map to a directory.
 Options -Indexes
@@ -54,16 +54,16 @@ Options +FollowSymLinks
   
     # Redirect to main page from external links to full text
     RewriteCond %{HTTP_REFERER} !^$ 
-    RewriteCond %{HTTP_REFERER} !^http://(www\.)?hpmor\.ru.* [NC]
-    RewriteRule ^files/hpmor.*$ http://hpmor.ru/ [R,NC,L]
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?hpmor\.ru.* [NC]
+    RewriteRule ^files/hpmor.*$ https://hpmor.ru/ [R,NC,L]
 
     # Redirect to main page from external links to full text
     RewriteCond %{HTTP_REFERER} !^$ 
-    RewriteCond %{HTTP_REFERER} !^http://(www\.)?hpmor\.ru.* [NC]
-    RewriteRule ^files/audio.*$ http://hpmor.ru/ [R,NC,L]
+    RewriteCond %{HTTP_REFERER} !^https://(www\.)?hpmor\.ru.* [NC]
+    RewriteRule ^files/audio.*$ https://hpmor.ru/ [R,NC,L]
 
     ## Redirect from unused chapter list
-    RewriteRule ^book/гарри-поттер-и-методы-рационального-мышления.* http://hpmor.ru/ [R=301,NC,L]
+    RewriteRule ^book/гарри-поттер-и-методы-рационального-мышления.* https://hpmor.ru/ [R=301,NC,L]
    
    
   # If your site can be accessed both with and without the 'www.' prefix, you
@@ -80,7 +80,11 @@ Options +FollowSymLinks
   # (http://www.example.com/... will be redirected to http://example.com/...)
   # uncomment the following:
    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-   RewriteRule ^ http://%1%{REQUEST_URI} [L,R=301]
+   RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+   
+  # Redirect to https
+   RewriteCond %{ENV:HTTPS} !on 
+   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
    RewriteBase /
 
