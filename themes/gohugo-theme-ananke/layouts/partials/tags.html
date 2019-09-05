@@ -1,4 +1,4 @@
-{{ $currentPageUrl := .URL }}
+{{ $currentPageUrl := .Permalink }}
 {{ if .Params.tags }}
   {{ $name := index .Params.tags 0 }}
   {{ $name := $name | urlize }}
@@ -11,7 +11,7 @@
           Related:
         </li>
         {{ range $tags.Pages }}
-          {{ if ne .URL $currentPageUrl }}
+          {{ if ne .Permalink $currentPageUrl }}
             <li class="mb2 mr3">
               <a href="{{ .Permalink }}" class="link mid-gray dim">
                  {{ .LinkTitle }}
