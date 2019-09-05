@@ -1,5 +1,5 @@
 {{/* Get the current page's URL so we can compare it to the list below */}}
-{{ $currentPageUrl := .URL }}
+{{ $currentPageUrl := .Permalink }}
 {{/* Get a list of this section's other pages. "RegularPages" excludes the list page    */}}
 {{ $currentSection := (where .Site.RegularPages "Section" .Section) }}
 {{/* Get the number of entries of  $currentSection and subtract 1 */}}
