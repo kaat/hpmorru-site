@@ -13,7 +13,7 @@
         {{ range $tags.Pages }}
           {{ if ne .URL $currentPageUrl }}
             <li class="mb2 mr3">
-              <a href="{{ .URL }}" class="link mid-gray dim">
+              <a href="{{ .Permalink }}" class="link mid-gray dim">
                  {{ .LinkTitle }}
               </a>
             </li>

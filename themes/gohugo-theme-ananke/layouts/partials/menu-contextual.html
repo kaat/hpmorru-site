@@ -14,7 +14,7 @@
       {{ range $currentSection }}
         <li class="list f5 w-100 hover-bg-white nl1">
           {{/* If the URL returned is the same as the current URL dim it so we know that that's the page we're on. NOTE: Should probably use a more accessible way of displaying this. */}}
-          <a href="{{ .URL }}" class="link ph2 pv2 db black{{ if eq $currentPageUrl .URL }} o-50{{end}}">
+          <a href="{{ .Permalink }}" class="link ph2 pv2 db black{{ if eq $currentPageUrl .Permalink }} o-50{{end}}">
             {{ .Title }}
           </a>
         </li>
