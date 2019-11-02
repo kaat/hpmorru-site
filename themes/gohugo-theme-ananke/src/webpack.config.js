@@ -1,6 +1,8 @@
-var path = require("path");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var webpack = require("webpack");
+var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var AssetsPlugin = require('assets-webpack-plugin');
+
 module.exports = {
 	entry: {
 		app: './js/main.js'
@@ -8,20 +10,19 @@ module.exports = {
 	module: {
 		rules: [
 			{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['env']
-          // plugins: [require('babel-plugin-transform-object-rest-spread')]
-        }
-      }
-    },
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['env']
+					}
+				}
+			},
 			{
 				test: /\.css$/,
 				use: ExtractTextPlugin.extract({
-					fallback: "style-loader",
+					fallback: 'style-loader',
 					use: 'css-loader?importLoaders=1!postcss-loader'
 				})
 			}
@@ -29,22 +30,28 @@ module.exports = {
 	},
 
 	output: {
-    path: path.join(__dirname, "./../static/dist"),
-		filename: '[name].bundle.js',
+		path: path.join(__dirname, './../static/dist'),
+		filename: 'js/[name].[chunkhash].js'
 	},
 
 	resolve: {
-		modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+		modules: [path.resolve(__dirname, 'src'), 'node_modules']
 	},
 
 	plugins: [
-		new ExtractTextPlugin("main.css"),
-		new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        })
+		new AssetsPlugin({
+			filename: 'webpack_assets.json',
+			path: path.join(__dirname, '../data'),
+			prettyPrint: true
+		}),
+		new ExtractTextPlugin({
+			filename: getPath => {
+				return getPath('css/[name].[contenthash].css');
+			},
+			allChunks: true
+		})
 	],
 	watchOptions: {
 		watch: true
 	}
-}
+};
