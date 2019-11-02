@@ -1,6 +1,7 @@
 # Export files
 public/*
 public
+data/*
 
 #OS
 Thumbs.db
