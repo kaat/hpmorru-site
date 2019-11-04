@@ -67,4 +67,5 @@ enableRobotsTXT = false
   featured_image = "/img/hpmorlogo.svg"
   body_classes = "helvetica bg-white"
   # recent_posts_number = 2
+  removefromexternalsearch = false
 
