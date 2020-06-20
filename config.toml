@@ -40,7 +40,7 @@ enableRobotsTXT = false
     name = "ODPS"
     weight = -30
     identifier = "Каталог ODPS со всеми файлами книг"
-    url = "/files/opds2.xml"
+    url = "/files/opds.xml"
     
 [[menu.main]]
     name = "Форум"
